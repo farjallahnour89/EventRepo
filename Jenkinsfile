@@ -41,25 +41,25 @@ stage ('MVN SONAR') {
     }
 }
 
-// stage ('MVN DEPLOY TO NEXUS') {
-//             steps {
-//                 nexusArtifactUploader(
-//         nexusVersion: 'nexus3',
-//         protocol: 'http',
-//         nexusUrl: 'localhost:8081',
-//         groupId: 'pom.tn.esprit.spring',
-//         version: 'pom.4.0.0',
-//         repository: 'nexus-repo-devops',
-//         credentialsId: 'NEXUS_CRED',
-//         artifacts: [
-//             [artifactId: 'pom.eventsProject',
-//              classifier: '',
-//              file: "pom.xml" ,
-//              type: "pom"]
-//         ]
-//      )
-//             }
-//         }
+stage ('MVN DEPLOY TO NEXUS') {
+            steps {
+                nexusArtifactUploader(
+        nexusVersion: 'nexus3',
+        protocol: 'http',
+        nexusUrl: 'localhost:8081',
+        groupId: 'pom.tn.esprit.spring',
+        version: 'pom.4.0.0',
+        repository: 'nexus-repo-devops',
+        credentialsId: 'NEXUS_CRED',
+        artifacts: [
+            [artifactId: 'pom.eventsProject',
+             classifier: '',
+             file: "pom.xml" ,
+             type: "pom"]
+        ]
+     )
+            }
+        }
 
 
 
