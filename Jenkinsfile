@@ -7,11 +7,7 @@ pipeline {
     agent any
 
     stages {
-   stage('CHECKOUT GIT'){
-               steps {
-                   git 'https://github.com/farjallahnour89/EventRepo.git';
-               }
-      }
+   
 
 
 stage('ARTIFACT CONSTRUCTION') {
