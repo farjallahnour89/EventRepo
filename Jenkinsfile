@@ -58,6 +58,32 @@ stage ('MVN DEPLOY TO NEXUS') {
             }
         }
 
+  stage('Docker Compose') {
+            steps {
+                script {
+                    // Run Docker Compose
+                    sh 'docker-compose up -d'
+                    def gitHash = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    
+                    def gitHashTaggedImage = "farjallahnour/devops:${env.BUILD_NUMBER}"
+                    
+                   
+                    sh "docker tag springboot-app $gitHashTaggedImage"
+
+                    // Push the images to Docker Hub
+                    
+                    
+                    docker.withRegistry('', 'registryCredential') {
+                        sh "docker push $gitHashTaggedImage"
+                    
+                   
+                }
+                 
+                
+                
+                }
+            }
+        }
 
 
 
